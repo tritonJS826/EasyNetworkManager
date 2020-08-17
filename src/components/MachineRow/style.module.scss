@@ -1,0 +1,28 @@
+.machineRow {
+  display: flex;
+  flex-wrap: wrap;
+  // min-height: 50px;
+  background-color: black;
+  margin: 2px;
+  border: solid black 2px;
+  align-items: center;
+  .textBlock {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    height: 100%;
+    border-right: solid black 2px;
+    // max-width: 50px;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 121, 16, 1) 75%,
+      rgba(0, 74, 255, 1) 100%
+    );
+    .text {
+      color: white;
+      margin-right: 3px;
+    }
+  }
+}

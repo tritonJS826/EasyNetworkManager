@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom';
+
+import NavMenu from './components/NavMenu';
+import CurrentNetworkPage from './pages/CurrentNetworkPage';
+import IPTablesPage from './pages/IPTablesPage';
+import SingleMachinePage from './pages/SingleMachinePage';
+import PATH from './constants/path';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const App = () => {
+  return (
+    <div className="App">
+    <BrowserRouter>
+    <NavMenu />
+    <Switch>
+      <Route exact path={PATH.CURRENT_NETWORK} component={CurrentNetworkPage} />} />
+      <Route exact path={PATH.SINGLE_MACHINE} component={SingleMachinePage} />
+      <Route exact path={PATH.IP_TABLES} component={IPTablesPage} />
+      <Redirect to={{ pathname: PATH.IP_TABLES }} />
+    </Switch>
+    </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

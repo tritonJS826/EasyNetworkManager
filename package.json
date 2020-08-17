@@ -9,25 +9,34 @@
     "url": "https://your-website.com"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2019 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
+    "productName": "networkManager",
+    "appId": "scripter.networkManager",
+    "win": {
+      "target": [
+        "portable"
+      ]
     }
   },
   "dependencies": {
     "electron-is-dev": "^1.0.1",
+    "fibers": "^5.0.0",
+    "node-nmap": "^4.0.0",
+    "node-sass": "^4.14.1",
+    "ping": "^0.2.3",
+    "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-bash": "^1.6.0",
+    "react-component-console": "^1.2.2",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.26.10",
+    "ssh2": "^0.8.8"
   },
   "homepage": "./",
   "main": "public/electron.js",
@@ -39,7 +48,9 @@
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "electron-pack": "build -mw"
+    "electron-pack": "build -mw",
+    "build-linux": "electron-builder -l --config",
+    "buikd-win": "electron-builder -w portable --config"
   },
   "eslintConfig": {
     "extends": "react-app"

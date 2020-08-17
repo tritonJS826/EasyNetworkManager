@@ -1,0 +1,43 @@
+.button {
+  background: black;
+  color: white;
+  padding: 3px 3px 0px 3px;
+  border-radius: 7px;
+  margin: 3px;
+  height: 35px;
+  transition: all 1s;
+  min-width: 45px;
+  height: 45px;
+  opacity: 0.8;
+  border: none;
+}
+
+.buttonIMG {
+  height: 15px;
+}
+
+.button.pressed {
+  background: grey;
+}
+
+.button:hover {
+  -webkit-animation: rainbow-background 5s infinite;
+  animation: rainbow-background 5s infinite;
+  cursor: pointer;
+  opacity: 1;
+}
+
+@keyframes rainbow-background {
+ 0% {
+  color: white
+ }
+ 33.000% {
+  color: green
+ }
+ 66.00% {
+  color:red
+ }
+ 99.00% {
+  color:white
+ }
+}
