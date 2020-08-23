@@ -1,0 +1,7 @@
+{
+  "tables": [
+    { "id": "0", "file": "./Vanderlande.json", "name": "Vanderlande" },
+    { "id": "1", "file": "./Airport.json", "name": "Airport" },
+    { "id": "2", "file": "./Rapiscan.json", "name": "Rapiscan" }
+  ]
+}

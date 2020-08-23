@@ -1,18 +1,20 @@
 .machineRow {
   display: flex;
   flex-wrap: wrap;
-  // min-height: 50px;
   background-color: black;
   margin: 2px;
   border: solid black 2px;
   align-items: center;
+  justify-content: space-around;
+  .select {
+    min-width: 100px;
+  }
   .textBlock {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     flex: auto;
-    height: 100%;
     border-right: solid black 2px;
-    // max-width: 50px;
     background: rgb(2, 0, 36);
     background: linear-gradient(
       90deg,
@@ -21,6 +23,7 @@
       rgba(0, 74, 255, 1) 100%
     );
     .text {
+      min-width: 20%;
       color: white;
       margin-right: 3px;
     }

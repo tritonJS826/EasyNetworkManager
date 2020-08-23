@@ -8,7 +8,6 @@ import {
   SET_COMMAND_TO_CURRENT_MACHINE,
 } from '../types/action-types';
 
-
 export const setCommandToCurrentMachine = (command) => ({
   type: SET_COMMAND_TO_CURRENT_MACHINE,
   payload: command,

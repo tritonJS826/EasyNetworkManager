@@ -1,0 +1,47 @@
+{
+  "id": "2",
+  "name": "Rapiscan",
+  "description": "table Rapiscan",
+  "ipRange": "123.123.123.0-255",
+  "machines": [
+    {
+      "id": "Rapiscan0",
+      "ip": "10.10.10.10",
+      "description": "some info",
+      "login": "",
+      "password": "",
+      "port": "",
+      "customCommands": []
+    },
+    {
+      "id": "Rapiscan1",
+      "ip": "20.20.20.20",
+      "description": "some info",
+      "login": "",
+      "password": "",
+      "port": "",
+      "customCommands": [
+        {
+          "id": "0",
+          "name": "command1",
+          "command": "script1"
+        }
+      ]
+    },
+    {
+      "id": "Rapiscan2",
+      "ip": "30.30.30.30",
+      "description": "some info",
+      "login": "",
+      "password": "",
+      "port": "",
+      "customCommands": [
+        {
+          "id": "0",
+          "name": "command1",
+          "command": "script1"
+        }
+      ]
+    }
+  ]
+}

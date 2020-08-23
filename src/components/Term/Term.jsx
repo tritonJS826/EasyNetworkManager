@@ -5,36 +5,27 @@ import Terminal from 'react-bash';
 import { test, clean } from '../../nodeScripts/terminalCustomCommands';
 import './style.css';
 
-
 function Term({
-  pushStory,
-  history,
-  className,
-  hidden,
+  history, className, hidden,
 }) {
   const extensions = { test, clean };
-  
+
   return (
-    <wrapper
-      className={className}
-      hidden={hidden}
-    >
-    <Terminal
-      theme={Terminal.Themes.DARK}
-      extensions={extensions}
-      history={history}
-    />
-    </wrapper>
+    <div className={className} hidden={hidden}>
+      <Terminal theme={Terminal.Themes.DARK} extensions={extensions} history={history} />
+    </div>
   );
 }
 
 Term.defaultProps = {
   className: 'terminal',
+  hidden: false,
 };
 
 Term.propTypes = {
   className: PropTypes.string,
-  // history: PropTypes.array,
+  history: PropTypes.arrayOf(PropTypes.any).isRequired,
+  hidden: PropTypes.bool,
 };
 
 export default Term;

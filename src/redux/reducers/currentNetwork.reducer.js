@@ -1,7 +1,4 @@
-import {
-  SET_SCAN_RANGE,
-  SET_MACHINES_DATA,
-} from '../actions/types/action-types';
+import { SET_SCAN_RANGE, SET_MACHINES_DATA } from '../actions/types/action-types';
 
 const initialCurrentNetwork = {
   scanRange: '172.21.96.1-255',
@@ -16,10 +13,10 @@ const currentMachineReducer = (state = initialCurrentNetwork, { type, payload })
         machines: payload,
       };
     case SET_SCAN_RANGE:
-     return {
-       ...state,
-       scanRange: payload,
-     };
+      return {
+        ...state,
+        scanRange: payload,
+      };
     default:
       return state;
   }

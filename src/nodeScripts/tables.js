@@ -1,37 +1,51 @@
 export const fs = require('fs');
 
-
-export const createNewFile = () => (dispatch) => {
-  fs.open('testFile.txt', 'w', (err) => {
-        if(err) throw err;
-        alert('File created');
-    });
+export const createNewFile = (path) => {
+  fs.open(path, 'w', (err) => {
+    if (err) throw err;
+  });
 };
 
-export const appendFile = () => (dispatch) => {
-  fs.appendFile('testFile.txt', ' This line is beyond the end.', (err) => {
-        if(err) throw err;
-        alert('Data has been added!');
-    });
+export const appendFile = (file, context) => {
+  fs.appendFile(file, context, (err) => {
+    if (err) throw err;
+  });
 };
 
-export const readFile = () => (dispatch) => {
-  fs.readFile('textFile.txt', 'utf8', (err, data) => {
-       if(err) throw err;
-       alert(data);
-   });
+export const readFileSync = (file) => {
+  const rawdata = fs.readFileSync(file);
+  const data = JSON.parse(rawdata);
+
+  return data;
 };
 
-export const getAlltables = () => (dispatch) => {
-  fs.readFile('tables.txt', 'utf8', (err, data) => {
-       if(err) throw err;
-       alert(data);
-   });
+export const initialization = () => {
+  const path = './tables.json';
+
+  try {
+    if (!fs.existsSync(path)) {
+      appendFile(path, JSON.stringify({ tables: [] }));
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-export const delTable = (path) => (dispatch) => {
+export const delFile = (path) => {
   fs.unlink(path, (err) => {
-        if(err) throw err;
-        alert('File deleted successfully!');
-    });
+    if (err) throw err;
+    alert(`File ${path} removed`);
+  });
+};
+
+export const rewriteFile = (path, content) => {
+  fs.writeFileSync(path, content, { encoding: 'utf8', flag: 'w' }, (err) => {
+    if (err) throw err;
+  });
+};
+
+export const renameFile = (path1, path2) => {
+  fs.renameSync(path1, path2, (err) => {
+    if (err) throw err;
+  });
 };

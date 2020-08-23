@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 
 import MachinesTable from './MachinesTable';
 
-// import { pushStory } from '../../redux/actions/creators/terminal';
+import { setCurrentMachines } from '../../redux/actions/creators/ipTables';
 
-const mapStateToProps = ({ terminal: { history }, currentNetwork: { machines } }) => ({ history, machines });
+const mapStateToProps = ({ terminal: { history } }) => ({ history });
 
-// const mapToDispatch = { pushStory };
+const mapToDispatch = { setCurrentMachines };
 
-export default connect(mapStateToProps)(MachinesTable);
+export default connect(mapStateToProps, mapToDispatch)(MachinesTable);

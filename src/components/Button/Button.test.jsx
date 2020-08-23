@@ -5,19 +5,23 @@ import { act } from 'react-dom/test-utils';
 
 import Button from './Button';
 
-const onClick = jest.fn()
+const onClick = jest.fn();
 const props = {
   name: 'test3',
   onClick,
-}
-
+};
 
 describe('Button', () => {
   describe('should be render', () => {
     it('renders with a text', () => {
       const div = document.createElement('div');
       act(() => {
-        ReactDOM.render(<Button name="test" onClick={() => {}}><>test</></Button>, div);
+        ReactDOM.render(
+          <Button name="test" onClick={() => {}}>
+            <>test</>
+          </Button>,
+          div,
+        );
       });
       expect(div.textContent).toBe('test');
       ReactDOM.unmountComponentAtNode(div);
@@ -25,7 +29,12 @@ describe('Button', () => {
     it('Button contain textContent', () => {
       const div = document.createElement('div');
       act(() => {
-        ReactDOM.render(<Button name="test" onClick={() => {}}><>test2</></Button>, div);
+        ReactDOM.render(
+          <Button name="test" onClick={() => {}}>
+            <>test2</>
+          </Button>,
+          div,
+        );
       });
       expect(div.querySelector('.test').textContent).toContain('test2');
       ReactDOM.unmountComponentAtNode(div);
@@ -37,7 +46,12 @@ describe('Button', () => {
       document.body.appendChild(div);
 
       act(() => {
-        ReactDOM.render(<Button name="test3" onClick={onClick}><>test3</></Button>, div);
+        ReactDOM.render(
+          <Button name="test3" onClick={onClick}>
+            <>test3</>
+          </Button>,
+          div,
+        );
       });
 
       // получаем элемент button

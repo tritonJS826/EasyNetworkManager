@@ -1,0 +1,15 @@
+.WindowChangeRow {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  overflow: overlay;
+  color: green;
+  .tableRow {
+    display:flex;
+    justify-content: space-between;
+  }
+}
+
+.WindowChangeRowHidden {
+  display: none;
+}
