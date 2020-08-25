@@ -43,13 +43,14 @@ function SingleMachine({
   const onExecuteCommandButton = () => {
     sshExecuteCommand(command, address, port, login, password);
   };
+
   const onExternalStatisticButton = () => {
     detailedScan(address);
   };
 
   const onInternalStatistic = () => {
-    const command = `id ${login} && uname -a`;
-    sshExecuteCommand(command, address, port, login, password);
+    const internalStatisticCommand = `id ${login} && uname -a`;
+    sshExecuteCommand(internalStatisticCommand, address, port, login, password);
   };
 
   return (
@@ -94,6 +95,15 @@ SingleMachine.propTypes = {
   port: PropTypes.string,
   login: PropTypes.string,
   password: PropTypes.string,
+  command: PropTypes.string.isRequired,
+  setAddressOfcurrentMachine: PropTypes.func.isRequired,
+  setPortOfcurrentMachine: PropTypes.func.isRequired,
+  setLoginOfcurrentMachine: PropTypes.func.isRequired,
+  setPasswordOfcurrentMachine: PropTypes.func.isRequired,
+  setCommandToCurrentMachine: PropTypes.func.isRequired,
+  ping: PropTypes.func.isRequired,
+  sshExecuteCommand: PropTypes.func.isRequired,
+  detailedScan: PropTypes.func.isRequired,
 };
 
 export default SingleMachine;

@@ -9,7 +9,8 @@ export const SET_COMMAND_TO_CURRENT_MACHINE = 'SET_COMMAND_TO_CURRENT_MACHINE';
 
 // terminal
 export const PUSH_STORY = 'PUSH_STORY';
-export const RESET_TERMINAL = 'RESET_TERMINALs';
+export const RESET_TERMINAL = 'RESET_TERMINALS';
+export const REWRITE_LAST_STORY = 'REWRITE_LAST_STORY';
 
 // currentNetwork
 export const SET_SCAN_RANGE = 'SET_SCAN_RANGE';

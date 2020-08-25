@@ -23,6 +23,7 @@ function Button({
 }
 
 Button.defaultProps = {
+  text: '',
   pressed: false,
   className: 'button',
   hidden: false,
@@ -30,7 +31,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   className: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   pressed: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   hidden: PropTypes.bool,

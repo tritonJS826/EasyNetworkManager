@@ -90,7 +90,7 @@ function MachineRow({
         {machineData?.login && machineData?.password ? 'ssh' : '- - -'}
       </span>
       <Button text="jump" onClick={jumpToSingleMachine} />
-      <Button text="check" onClick={onCheckMachineStatus} />
+      <Button text="check" onClick={onCheckMachineStatus} hidden={isDelBtnHidden} />
       <Button text="turnOn" onClick={onTurnOn} hidden={!machineData?.mac} />
       <Button text="del" onClick={onDelButtun} hidden={isDelBtnHidden} />
       <Button text="reset" onClick={onResetStatus} hidden={isDelBtnHidden} />

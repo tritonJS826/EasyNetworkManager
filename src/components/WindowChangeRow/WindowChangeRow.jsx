@@ -5,14 +5,11 @@ import Input from '../Input';
 import Button from '../Button';
 import style from './style.module.scss';
 
-import { machineCanonization } from '../../helpers/machineMethods';
-
 const WindowChangeRow = ({
   hidden,
   machineData,
   cancel,
   setCurrentMachines,
-  currentTable,
   machines,
 }) => {
   const [input, setInput] = useReducer((state, newState) => ({ ...state, ...newState }), {
@@ -140,7 +137,7 @@ const WindowChangeRow = ({
       </div>
       <div className={style.tableRow}>
         mac:
-        <Input value={input.mac} name="mac" placeholder={machineData.mac} onChange={handleChange} />
+        <Input value={input?.mac ?? ''} name="mac" placeholder={machineData.mac} onChange={handleChange} />
       </div>
       <div className={style.tableRow}>scripts (print &#34;!!!&#34; to del script ):</div>
       {input.customCommands?.map((command, i) => (
@@ -188,7 +185,6 @@ WindowChangeRow.propTypes = {
   machines: PropTypes.arrayOf(PropTypes.any),
   machineData: PropTypes.objectOf(PropTypes.any).isRequired,
   cancel: PropTypes.func.isRequired,
-  currentTable: PropTypes.objectOf(PropTypes.any).isRequired,
   setCurrentMachines: PropTypes.func.isRequired,
 };
 

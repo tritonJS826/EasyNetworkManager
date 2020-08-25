@@ -136,10 +136,7 @@ function IPTablesPage({
   const onCheckTable = async () => {
     const { machines } = currentTable;
 
-    // const machinesIp = machines.map(({ ip }) => ip);
     const statuses = await checkMachinesStatus(machines);
-
-    console.log(statuses);
     const newMachines = machines.map((machine, i) => setMachineStatus(machine, statuses[i]));
 
     setCurrentMachines(newMachines);
@@ -150,8 +147,7 @@ function IPTablesPage({
       const machinesTable = currentTable.machines;
       const machinesScanerRaw = machineCanonization(machines);
 
-      const machinesScaner = machinesScanerRaw
-        .map((el) => setMachineStatus(el, machineStatus.newOnline));
+      const machinesScaner = machinesScanerRaw.map((el) => setMachineStatus(el, machineStatus.newOnline));
       const allMachines = machineMergeByIp(machinesTable, machinesScaner);
 
       const statuses = await checkMachinesStatus(allMachines);
@@ -168,11 +164,21 @@ function IPTablesPage({
       {tablesNavigation}
       <Button text="+" onClick={onAddTableBtn} />
       <br />
-      <span className={style.text}>{currentTable.name}</span>
-      <br />
-      <span className={style.text}>{currentTable.description}</span>
-      <br />
-      <span className={style.text}>{currentTable.ipRange}</span>
+      {isWindowChangeTableHidden && (
+        <>
+          <span className={style.text}>{currentTable.name}</span>
+          <br />
+          <span className={style.text}>{currentTable.description}</span>
+          <br />
+          <span className={style.text}>{currentTable.ipRange}</span>
+          <br />
+        </>
+      )}
+      <WindowChangeTable
+        hidden={isWindowChangeTableHidden}
+        cancel={toggleWindowChangeTableHidden}
+      />
+      <Button text="change table data" onClick={toggleWindowChangeTableHidden} />
       <br />
       {isMachineExist() && (
         <>
@@ -194,12 +200,7 @@ function IPTablesPage({
       {isTablesExist && (
         <>
           <Button text="add machine" onClick={onAddMachineBtn} />
-          <Button text="change table data" onClick={toggleWindowChangeTableHidden} />
           <Button text="del table" onClick={onDelTableBtn} />
-          <WindowChangeTable
-            hidden={isWindowChangeTableHidden}
-            cancel={toggleWindowChangeTableHidden}
-          />
         </>
       )}
     </>
