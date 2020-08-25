@@ -5,12 +5,20 @@ import Input from '../Input';
 import Button from '../Button';
 import style from './style.module.scss';
 
+import { machineCanonization } from '../../helpers/machineMethods';
+
 const WindowChangeRow = ({
-  hidden, machineData, cancel, setCurrentMachines, machines,
+  hidden,
+  machineData,
+  cancel,
+  setCurrentMachines,
+  currentTable,
+  machines,
 }) => {
   const [input, setInput] = useReducer((state, newState) => ({ ...state, ...newState }), {
     ip: machineData.ip,
     hostname: machineData.hostname,
+    mac: machineData.mac,
     description: machineData.description,
     login: machineData.login,
     password: machineData.password,
@@ -53,6 +61,7 @@ const WindowChangeRow = ({
           id: machine.id,
           ip: input.ip,
           hostname: input.hostname,
+          mac: input.mac,
           description: input.description,
           login: input.login,
           password: input.password,
@@ -67,11 +76,14 @@ const WindowChangeRow = ({
   };
 
   const onNewCommandBtn = () => {
-    const newCustomCommands = [...input.customCommands, {
-      id: String(input.customCommands.length),
-      name: input.newCommandName,
-      command: input.newCommandScript,
-    }];
+    const newCustomCommands = [
+      ...input.customCommands,
+      {
+        id: String(input.customCommands.length),
+        name: input.newCommandName,
+        command: input.newCommandScript,
+      },
+    ];
     setInput({ customCommands: newCustomCommands });
   };
 
@@ -126,6 +138,10 @@ const WindowChangeRow = ({
           onChange={handleChange}
         />
       </div>
+      <div className={style.tableRow}>
+        mac:
+        <Input value={input.mac} name="mac" placeholder={machineData.mac} onChange={handleChange} />
+      </div>
       <div className={style.tableRow}>scripts (print &#34;!!!&#34; to del script ):</div>
       {input.customCommands?.map((command, i) => (
         <div className={style.tableRow} key={command.id}>
@@ -140,8 +156,18 @@ const WindowChangeRow = ({
         </div>
       ))}
       <div className={style.tableRow}>
-        <Input value={input.newCommandName} name="newCommandName" placeholder={input.newCommandName} onChange={handleChange} />
-        <Input value={input.newCommandScript} name="newCommandScript" placeholder={input.newCommandScript} onChange={handleChange} />
+        <Input
+          value={input.newCommandName}
+          name="newCommandName"
+          placeholder={input.newCommandName}
+          onChange={handleChange}
+        />
+        <Input
+          value={input.newCommandScript}
+          name="newCommandScript"
+          placeholder={input.newCommandScript}
+          onChange={handleChange}
+        />
       </div>
       <div className={style.tableRow}>
         <Button text="accept" onClick={onAcceptBtn} />
@@ -153,15 +179,16 @@ const WindowChangeRow = ({
 };
 
 WindowChangeRow.defaultProps = {
-  // machines: [],
+  machines: [],
   hidden: true,
 };
 
 WindowChangeRow.propTypes = {
   hidden: PropTypes.bool,
+  machines: PropTypes.arrayOf(PropTypes.any),
   machineData: PropTypes.objectOf(PropTypes.any).isRequired,
   cancel: PropTypes.func.isRequired,
-  machines: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentTable: PropTypes.objectOf(PropTypes.any).isRequired,
   setCurrentMachines: PropTypes.func.isRequired,
 };
 

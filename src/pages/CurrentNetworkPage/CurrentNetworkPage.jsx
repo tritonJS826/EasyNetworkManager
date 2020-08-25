@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import MachinesTable from '../../components/MachinesTable';
 
 import newDataId from '../../helpers/newDataId';
+import { machineCanonization } from '../../helpers/machineMethods';
 import { rewriteFile, appendFile, readFileSync } from '../../nodeScripts/tables';
 
 import PATH from '../../constants/path';
@@ -79,22 +80,7 @@ function CurrentNetworkPage({
 
     rewriteFile('tables.json', JSON.stringify({ tables: newTables }));
 
-    const canonicMachines = machines.map((machine, i) => ({
-      id: `${tableName}${i}`,
-      ip: machine.ip,
-      hostname: machine?.hostname,
-      description: '',
-      login: '',
-      password: '',
-      port: '',
-      customCommands: [
-        {
-          id: '0',
-          name: 'example',
-          command: 'ls',
-        },
-      ],
-    }));
+    const canonicMachines = machineCanonization(machines, tableName);
 
     const newCurrentTable = {
       id,

@@ -11,7 +11,7 @@ import {
   setCommandToCurrentMachine,
 } from '../../redux/actions/creators/currentMachine';
 
-import { delMachine } from '../../redux/actions/creators/ipTables';
+import { delMachine, resetMachineStatusById } from '../../redux/actions/creators/ipTables';
 
 const mapStateToProps = ({ terminal: { history } }) => ({ history });
 
@@ -22,6 +22,7 @@ const mapDispatchToProps = {
   setPasswordOfcurrentMachine,
   setCommandToCurrentMachine,
   delMachine,
+  resetMachineStatusById,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MachineRow);

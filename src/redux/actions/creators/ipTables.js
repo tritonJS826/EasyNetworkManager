@@ -4,7 +4,13 @@ import {
   SET_CURRENT_MACHINES,
   DEL_MACHINE,
   RESET_TABLES,
+  RESET_MACHIE_STATUS_BY_ID,
 } from '../types/action-types';
+
+export const resetMachineStatusById = (id, newStatus) => ({
+  type: RESET_MACHIE_STATUS_BY_ID,
+  payload: { id, newStatus },
+});
 
 export const resetTables = () => ({
   type: RESET_TABLES,

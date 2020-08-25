@@ -38,7 +38,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "sass": "^1.26.10",
-    "ssh2": "^0.8.8"
+    "ssh2": "^0.8.8",
+    "wakeonlan": "^0.1.0"
   },
   "homepage": "./",
   "main": "public/electron.js",

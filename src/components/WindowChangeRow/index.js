@@ -4,7 +4,12 @@ import WindowChangeRow from './WindowChangeRow';
 
 import { setCurrentMachines } from '../../redux/actions/creators/ipTables';
 
-const mapStateToProps = ({ ipTables: { currentTable: { machines } } }) => ({ machines });
+const mapStateToProps = ({
+  ipTables: { currentTable },
+  ipTables: {
+    currentTable: { machines },
+  },
+}) => ({ currentTable, machines });
 
 const mapToDispatch = { setCurrentMachines };
 

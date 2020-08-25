@@ -4,6 +4,7 @@ import {
   SET_CURRENT_MACHINES,
   DEL_MACHINE,
   RESET_TABLES,
+  RESET_MACHIE_STATUS_BY_ID,
 } from '../actions/types/action-types';
 
 const initialIpTables = {
@@ -19,6 +20,21 @@ const initialIpTables = {
 
 const ipTablesReducer = (state = initialIpTables, { type, payload }) => {
   switch (type) {
+    case RESET_MACHIE_STATUS_BY_ID:
+      return {
+        ...state,
+        currentTable: {
+          ...state.currentTable,
+          machines: state.currentTable.machines.map((el) => {
+            if (payload.id === el.id) {
+              const newEl = el;
+              newEl.status = payload.newStatus;
+              return newEl;
+            }
+            return el;
+          }),
+        },
+      };
     case DEL_MACHINE:
       return {
         ...state,

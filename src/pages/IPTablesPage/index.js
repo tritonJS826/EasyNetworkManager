@@ -8,14 +8,16 @@ import {
   setCurrentIpTable,
   setCurrentMachines,
 } from '../../redux/actions/creators/ipTables';
+import { quickScan } from '../../nodeScripts/nmapQueries';
 
-const mapStateToProps = ({ ipTables: { tables, currentTable } }) => ({
+const mapStateToProps = ({ ipTables: { tables, currentTable }, currentNetwork }) => ({
+  currentNetwork,
   tables,
   currentTable,
 });
 
 const mapDispatchToProps = {
-  // createNewFile,
+  quickScan,
   resetTables,
   setIpTables,
   setCurrentIpTable,

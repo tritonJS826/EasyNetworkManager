@@ -13,7 +13,8 @@ export const detailedScan = (address) => (dispatch) => {
     secondsLate += 5;
   }, 5000);
 
-  scan.on('complete', (data) => {
+  scan.on('complete', async (data) => {
+    console.log(data);
     clearInterval(loader);
     if (!data[0]) {
       dispatch(pushStory('Error'));
@@ -37,6 +38,7 @@ export const detailedScan = (address) => (dispatch) => {
           `),
       );
     });
+    await dispatch(setMachinesData(data));
     return null;
   });
 
@@ -47,7 +49,7 @@ export const detailedScan = (address) => (dispatch) => {
   });
 };
 
-export const quickScan = (address) => (dispatch) => {
+export const quickScan = (address, callback) => async (dispatch) => {
   const scan = new nmap.QuickScan(address);
   let secondsLate = 5;
   const loader = setInterval(() => {
@@ -55,7 +57,7 @@ export const quickScan = (address) => (dispatch) => {
     secondsLate += 5;
   }, 5000);
 
-  scan.on('complete', (data) => {
+  scan.on('complete', async (data) => {
     clearInterval(loader);
     if (!data[0]) {
       dispatch(pushStory('Error'));
@@ -71,8 +73,9 @@ export const quickScan = (address) => (dispatch) => {
           `),
       );
     });
-    dispatch(setMachinesData(data));
+    await dispatch(setMachinesData(data));
     dispatch(pushStory('-------------quickScan completed-------------------'));
+    if (callback) callback(data);
     return null;
   });
 
