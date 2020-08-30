@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NavMenu from './NavMenu';
 import { setIpTables } from '../../redux/actions/creators/ipTables';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ currentMachine: { processCounter } }) => ({ processCounter });
 
 const mapToDispatch = { setIpTables };
 

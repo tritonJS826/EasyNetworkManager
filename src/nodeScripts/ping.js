@@ -1,14 +1,20 @@
 import { pushStory } from '../redux/actions/creators/terminal';
+import {
+  increaseProcessCounter,
+  decreaseProcessCounter,
+} from '../redux/actions/creators/currentMachine';
+import store from '../redux/redux-store';
 
 const ping = require('ping');
 
 const myPing = (hosts = ['172.21.96.144']) => async (dispatch) => {
+  dispatch(increaseProcessCounter());
   dispatch(pushStory('Ping...'));
   const config = {
     timeout: 5,
     min_reply: 5,
   };
-  hosts.forEach(async (host) => {
+  const promises = hosts.map(async (host) => {
     const probe = await ping.promise.probe(host, config);
     dispatch(
       pushStory(`
@@ -17,9 +23,13 @@ const myPing = (hosts = ['172.21.96.144']) => async (dispatch) => {
           ${probe.output}`),
     );
   });
+  Promise.all(promises).then(() => {
+    dispatch(decreaseProcessCounter());
+  });
 };
 
 export const pingMachines = async (hosts) => {
+  store.dispatch(increaseProcessCounter());
   const config = {
     timeout: 5,
     min_reply: 5,
@@ -32,6 +42,7 @@ export const pingMachines = async (hosts) => {
   });
 
   const respond = await Promise.all(promises);
+  store.dispatch(decreaseProcessCounter());
   return respond;
 };
 

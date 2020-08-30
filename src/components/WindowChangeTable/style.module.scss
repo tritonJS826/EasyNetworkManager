@@ -1,15 +1,14 @@
 .WindowChangeTable {
   display: flex;
   flex-direction: column;
-  width: 200px;
-  height: 200px;
-  background: red;
+  align-items: center;
   margin: 3%;
   overflow: overlay;
   color: green;
   .tableRow {
     display:flex;
     justify-content: space-between;
+    width: 40%;
   }
 }
 

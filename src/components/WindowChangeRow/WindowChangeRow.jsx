@@ -70,6 +70,7 @@ const WindowChangeRow = ({
     });
 
     setCurrentMachines(newCurrentMachines);
+    cancel();
   };
 
   const onNewCommandBtn = () => {

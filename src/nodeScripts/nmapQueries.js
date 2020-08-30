@@ -1,5 +1,6 @@
 import { pushStory, rewriteLastStory } from '../redux/actions/creators/terminal';
 import { setMachinesData } from '../redux/actions/creators/currentNetwork';
+import { increaseProcessCounter, decreaseProcessCounter } from '../redux/actions/creators/currentMachine';
 
 const nmap = require('node-nmap');
 
@@ -8,7 +9,10 @@ nmap.nmapLocation = 'nmap';
 export const detailedScan = (address) => (dispatch) => {
   const scan = new nmap.OsAndPortScan(address);
   let secondsLate = 5;
+
+  dispatch(increaseProcessCounter());
   dispatch(pushStory('Scanning...'));
+
   const loader = setInterval(() => {
     dispatch(rewriteLastStory(`Scanning...${secondsLate} seconds late...`));
     secondsLate += 5;
@@ -17,6 +21,7 @@ export const detailedScan = (address) => (dispatch) => {
   scan.on('complete', async (data) => {
     clearInterval(loader);
     if (!data[0]) {
+      dispatch(decreaseProcessCounter());
       dispatch(pushStory('Error'));
       return null;
     }
@@ -43,6 +48,7 @@ export const detailedScan = (address) => (dispatch) => {
   });
 
   scan.on('error', (error) => {
+    dispatch(decreaseProcessCounter());
     dispatch(pushStory('quickscan error'));
     dispatch(pushStory(error));
     clearInterval(loader);
@@ -52,12 +58,15 @@ export const detailedScan = (address) => (dispatch) => {
 export const quickScan = (address, callback) => async (dispatch) => {
   const scan = new nmap.QuickScan(address);
   let secondsLate = 5;
+  dispatch(increaseProcessCounter());
+
   const loader = setInterval(() => {
     dispatch(rewriteLastStory(`Scanning...${secondsLate} seconds late...`));
     secondsLate += 5;
   }, 5000);
 
   scan.on('complete', async (data) => {
+    dispatch(decreaseProcessCounter());
     clearInterval(loader);
     if (!data[0]) {
       dispatch(pushStory('Error'));
@@ -80,6 +89,7 @@ export const quickScan = (address, callback) => async (dispatch) => {
   });
 
   scan.on('error', (error) => {
+    dispatch(decreaseProcessCounter());
     dispatch(pushStory('quickscan error!!'));
     dispatch(pushStory(error));
     clearInterval(loader);

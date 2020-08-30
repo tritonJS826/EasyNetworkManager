@@ -6,7 +6,16 @@ import {
   SET_LOGIN_OF_CURRENT_MACHINE,
   SET_PASSWORD_OF_CURRENT_MACHINE,
   SET_COMMAND_TO_CURRENT_MACHINE,
+  DECREASE_PROCESS_COUNTER,
+  INCREASE_PROCESS_COUNTER,
 } from '../types/action-types';
+
+export const decreaseProcessCounter = () => ({
+  type: DECREASE_PROCESS_COUNTER,
+});
+export const increaseProcessCounter = () => ({
+  type: INCREASE_PROCESS_COUNTER,
+});
 
 export const setCommandToCurrentMachine = (command) => ({
   type: SET_COMMAND_TO_CURRENT_MACHINE,

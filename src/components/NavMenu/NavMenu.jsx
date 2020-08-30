@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import { NavLink } from 'react-router-dom';
+
+import style from './style.module.scss';
+
 import PATH from '../../constants/path';
 import Button from '../Button';
-import {
-  readFileSync,
-  initialization,
-} from '../../nodeScripts/tables';
+import { readFileSync, initialization } from '../../nodeScripts/tables';
 
-const NavMenu = ({ setIpTables }) => {
+const NavMenu = ({ setIpTables, processCounter }) => {
   useEffect(() => {
     initialization();
     const readingTables = readFileSync('tables.json');
@@ -17,7 +16,11 @@ const NavMenu = ({ setIpTables }) => {
   }, [setIpTables]);
 
   return (
-    <div className="nav-menu">
+    <div className={style.navMenu}>
+      <span className={style.processes}>
+        Processes:
+        {processCounter}
+      </span>
       <NavLink to={PATH.SINGLE_MACHINE}>
         <Button text="SINGLE_MACHINE" onClick={() => {}} />
       </NavLink>
@@ -39,9 +42,7 @@ NavMenu.defaultProps = {
 
 NavMenu.propTypes = {
   setIpTables: PropTypes.func.isRequired,
-  // toggleNav: PropTypes.func.isRequired,
-  // navBarState: PropTypes.bool,
-  // setGameName: PropTypes.func.isRequired,
+  processCounter: PropTypes.number.isRequired,
 };
 
 export default NavMenu;

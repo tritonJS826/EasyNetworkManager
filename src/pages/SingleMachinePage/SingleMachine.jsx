@@ -74,7 +74,7 @@ function SingleMachine({
       <div className="flex-row">
         <Button text="ping" onClick={onPingButton} />
         <Button text="external statistic" onClick={onExternalStatisticButton} />
-        <Button text="SSH connect" onClick={() => {}} />
+        <Button text="SSH connect" onClick={() => {alert('not available')}} />
         <Button text="internal statistic (via SSH)" onClick={onInternalStatistic} />
         <Button text="execute command" onClick={onExecuteCommandButton} />
       </div>
