@@ -1,68 +1,97 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple network manager that allows you to monitor networked devices in real time, as well as scan
+network for the presence of devices, remotely turn on devices via wakeOnLan technology, as well as remotely execute various bash scripts
+via ssh, or create ssh sessions.
+<br />
+The application contains three tabs, you can switch between them using the buttons:
+SINGLE_MACHINE,<br />
+CURRENT_NETWORK,<br />
+IP_TABLES
+<br />
+<br />
 
-## Available Scripts
+Short description of tabs: <br />
 
-In the project directory, you can run:
 
-### `npm start`
+1.SINGLE_MACHINE
+<br />
+![](./public/SINGLE_MACHINE.png?raw=true "Single machine page")
+<br />
+This tab has 5 fields to fill out: <br />
+  device address, <br />
+  connection port for ssh, <br />
+  login for ssh, <br />
+  password for ssh, <br />
+  bash command to execute. <br />
+And 5 buttons: <br />
+  **ping** - pings the device to the specified address, <br />
+  **external statistic** - scans device ports, tries to install OS version, vendor, etc. (node ​​nmap), <br />
+  **ssh connect** - creates an ssh session with the device, <br />
+  **internal statistic** - displays internal data about the machine (with current ssh login and password), <br />
+  **execute command** - executes a command on a remote device (with current ssh login and password).
+  <br />
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+  2.CURRENT_NETWORK
+  <br />
+  ![](./public/CURRENT_NETWORK.png?raw=true "Current network page")
+  <br />
+  There are 2 fields:
+   to specify a range of addresses for scanning (you can specify the entire local network by clicking on the autodetection button), <br />
+   to specify the table name when saving. <br />
+  And buttons: <br />
+  **quickScan** - fast ping scan of devices (several seconds per machine), <br />
+  **detailedScan** - detailed scanning of devices (few minutes per vehicle), <br />
+  **terminal** - display the result using the terminal, <br />
+  **table** - display the result using the graphical interface, <br />
+  **cleanTable** - clear the current list of devices, <br />
+  **saveTable** - save this table (will be displayed in the IP_TABLES tab) <br />
+  <br />
 
-### `npm test`
+  3.IP_TABLES
+<br />
+![](./public/IP_TABLES.png?raw=true "IP tables page")
+<br />
+At the top of the page, there is a list of saved tables (switching between them by clicking on the corresponding button)
+Next comes information about the table and a button to change it.
+Below are provided buttons for sorting the list of devices in the table (flips the table when pressed again)
+Next comes the table itself, which presents the following data about each device:
+  *hostname*, <br />
+  *ip*, <br />
+  *description*, <br />
+  *ssh login*, (indicates the possibility of remote access) <br />
+  *MAC* of the network device.
+  list of *available scripts* for this device. <br />
+This data can be changed by clicking on the **change** button <br />
+The following operations are available for each device (by pressing the corresponding buttons): <br />
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**jump** - goes to the SINGLLE_MACHINE tab with the substitution of the corresponding device data <br />
+  **check** - ping check if the device is online <br />
+  **turnOn** - if there is a MAC address, turns on the device using WakeOnLan (bios configuration required) <br />
+  **del** - removes the device from the list, <br />
+  **reset** - reset the current device status, <br />
+  **change** - change device data, create / delete available scripts; <br />
+  Device statuses (by color):
+  <br />
+  *black* - the device is recorded in the table, but its presence in the network was not checked, <br />
+  *green* - the device is (was) in the network, <br />
+  *red* - the device is not (was not) in the network, <br />
+  *blue* - the device is (was) in the network, but not saved in the table; <br />
+<br />
 
-### `npm run build`
+There are the following options for working with the table:<br />
+  **save changes** - overwrites the current table (saves all changes) <br />
+  **check table** - fast ping check of all table devices, <br />
+  **check table within network** - fast ping check of all table devices as well as all devices in the range specified in the table description, fast ping check of all table machines<br />
+  **RTS (2min)** - (Real Time Scanning) scan the table and network with a frequency of 2 min / stop scanning<br />
+  **add machine** - adds a device with blank data to the table, <br />
+  **del table** - deletes the given table
+  <br />
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  Technologies used
+    <br />
+    React (CRA) (Router) <br />
+    Redux (thunk) <br />
+    Electron <br />
+    eslint (react, airbnb) <br />
+    SCSS (modules) <br />
