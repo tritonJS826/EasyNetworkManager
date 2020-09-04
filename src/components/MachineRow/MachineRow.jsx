@@ -91,7 +91,7 @@ function MachineRow({
       </span>
       <Button text="jump" onClick={jumpToSingleMachine} />
       <Button text="check" onClick={onCheckMachineStatus} hidden={isDelBtnHidden} />
-      <Button text="turnOn" onClick={onTurnOn} hidden={!machineData?.mac} />
+      <Button text="turnOn" onClick={onTurnOn} hidden={!machineData?.mac && machineData.status !== statuses.offLine} />
       <Button text="del" onClick={onDelButtun} hidden={isDelBtnHidden} />
       <Button text="reset" onClick={onResetStatus} hidden={isDelBtnHidden} />
       {!isSelectHidden && (

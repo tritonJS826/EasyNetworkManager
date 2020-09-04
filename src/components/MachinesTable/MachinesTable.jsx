@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import MachineRow from '../MachineRow';
-import style from './style.module.css';
+import style from './style.module.scss';
 
 const MachinesTable = ({
   machines, isDelBtnHidden, isSelectHidden, isChangeBtnHidden,

@@ -28,7 +28,8 @@ function IPTablesPage({
   setCurrentMachines,
   resetTables,
   quickScan,
-  // currentNetwork,
+  isRTSWork,
+  toogleIsRtsWork,
 }) {
   const [isWindowChangeTableHidden, setIsWindowChangeTableHidden] = useState(true);
   const toggleWindowChangeTableHidden = () => setIsWindowChangeTableHidden(!isWindowChangeTableHidden);
@@ -159,6 +160,21 @@ function IPTablesPage({
     quickScan(currentTable.ipRange, scanCallback);
   };
 
+  useEffect(() => {
+    const rtScan = setInterval(onCheckTableWithinNetwork, 120000);
+    if (isRTSWork) {
+      onCheckTableWithinNetwork();
+      return () => clearInterval(rtScan);
+    }
+    clearInterval(rtScan);
+
+    return () => clearInterval(rtScan);
+  }, [isRTSWork]);
+
+  const onRTS = () => {
+    toogleIsRtsWork();
+  };
+
   return (
     <>
       {tablesNavigation}
@@ -194,6 +210,7 @@ function IPTablesPage({
           <Button text="save changes" onClick={onSaveChangesBtn} />
           <Button text="check table" onClick={onCheckTable} />
           <Button text="check table within network" onClick={onCheckTableWithinNetwork} />
+          <Button text="RTS(2min)" onClick={onRTS} pressed={isRTSWork} />
         </>
       )}
       <br />
@@ -217,7 +234,8 @@ IPTablesPage.propTypes = {
   setCurrentMachines: PropTypes.func.isRequired,
   resetTables: PropTypes.func.isRequired,
   quickScan: PropTypes.func.isRequired,
-  currentNetwork: PropTypes.objectOf(PropTypes.any).isRequired,
+  isRTSWork: PropTypes.bool.isRequired,
+  toogleIsRtsWork: PropTypes.func.isRequired,
 };
 
 export default IPTablesPage;

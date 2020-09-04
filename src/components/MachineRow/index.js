@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 import MachineRow from './MachineRow';
 
-// import { pushStory } from '../../redux/actions/creators/terminal';
 import {
   setAddressOfcurrentMachine,
   setPortOfcurrentMachine,

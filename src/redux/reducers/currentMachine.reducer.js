@@ -15,7 +15,7 @@ const initialCurrentMachine = {
   address: '172.21.96.50',
   port: '22',
   login: 'admin',
-  password: '7393075Sfx',
+  password: 'admin',
   command: 'cat index_default.html',
 };
 

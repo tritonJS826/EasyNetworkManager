@@ -12,22 +12,29 @@
   border: none;
 }
 
-.buttonIMG {
-  height: 15px;
-}
-
-.button.pressed {
+.pressed {
+  color: white;
+  padding: 3px 3px 0px 3px;
+  border-radius: 7px;
+  margin: 3px;
+  height: 35px;
+  transition: all 1s;
+  min-width: 45px;
+  height: 45px;
+  opacity: 0.8;
+  border: none;
   background: grey;
 }
 
+
 .button:hover {
-  -webkit-animation: rainbow-background 5s infinite;
-  animation: rainbow-background 5s infinite;
+  -webkit-animation: rainbow 5s infinite;
+  animation: rainbow 5s infinite;
   cursor: pointer;
   opacity: 1;
 }
 
-@keyframes rainbow-background {
+@keyframes rainbow {
  0% {
   color: white
  }

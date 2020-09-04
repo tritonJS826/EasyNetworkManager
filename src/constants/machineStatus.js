@@ -6,8 +6,8 @@ export default {
 };
 
 export const colorByStatus = {
-  newOnline: '#040e42',
-  oldOnline: '#092e10',
-  offLine: '#400202',
-  unknown: 'black',
+  newOnline: '#040e42', // blue
+  oldOnline: '#092e10', // green
+  offLine: '#400202', // red
+  unknown: 'black', // black
 };

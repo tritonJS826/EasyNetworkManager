@@ -106,7 +106,6 @@ const WindowChangeTable = ({
 };
 
 WindowChangeTable.defaultProps = {
-  // machines: [],
   hidden: true,
 };
 

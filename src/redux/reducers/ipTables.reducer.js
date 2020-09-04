@@ -5,6 +5,7 @@ import {
   DEL_MACHINE,
   RESET_TABLES,
   RESET_MACHIE_STATUS_BY_ID,
+  TOOGLE_IS_RTS_WORK,
 } from '../actions/types/action-types';
 
 const initialIpTables = {
@@ -16,10 +17,16 @@ const initialIpTables = {
     ipRange: '',
     machines: [],
   },
+  isRTSWork: false,
 };
 
 const ipTablesReducer = (state = initialIpTables, { type, payload }) => {
   switch (type) {
+    case TOOGLE_IS_RTS_WORK:
+      return {
+        ...state,
+        isRTSWork: !state.isRTSWork,
+      };
     case RESET_MACHIE_STATUS_BY_ID:
       return {
         ...state,

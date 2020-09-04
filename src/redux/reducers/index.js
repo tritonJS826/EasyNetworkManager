@@ -5,7 +5,6 @@ import terminalReducer from './terminal.reducer';
 import currentNetworkReducer from './currentNetwork.reducer';
 import ipTablesReducer from './ipTables.reducer';
 
-
 const reducers = combineReducers({
   currentMachine: currentMachineReducer,
   terminal: terminalReducer,

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import style from './style.module.scss';
 
 function Button({
-  className,
   text,
   onClick,
   pressed,
@@ -13,7 +12,7 @@ function Button({
   if (hidden) return null;
   return (
     <button
-      className={`${className} ${pressed ? 'pressed' : ''}`}
+      className={`${pressed ? style.pressed : style.button}`}
       type="button"
       onClick={onClick}
     >
@@ -25,12 +24,10 @@ function Button({
 Button.defaultProps = {
   text: '',
   pressed: false,
-  className: 'button',
   hidden: false,
 };
 
 Button.propTypes = {
-  className: PropTypes.string,
   text: PropTypes.string,
   pressed: PropTypes.bool,
   onClick: PropTypes.func.isRequired,

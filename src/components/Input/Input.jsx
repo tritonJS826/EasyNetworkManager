@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import style from './style.module.scss';
 
 function Input({
   name,
@@ -9,11 +9,10 @@ function Input({
   value,
   onChange,
   placeholder,
-  className,
 }) {
   return (
     <input
-      className={className}
+      className={style.input}
       name={name}
       id={id}
       value={value}
@@ -24,7 +23,6 @@ function Input({
 }
 
 Input.defaultProps = {
-  className: 'input',
   name: '',
   id: '',
   value: '',
@@ -33,7 +31,6 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  className: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
   value: PropTypes.string,

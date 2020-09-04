@@ -5,7 +5,12 @@ import {
   DEL_MACHINE,
   RESET_TABLES,
   RESET_MACHIE_STATUS_BY_ID,
+  TOOGLE_IS_RTS_WORK,
 } from '../types/action-types';
+
+export const toogleIsRtsWork = () => ({
+  type: TOOGLE_IS_RTS_WORK,
+});
 
 export const resetMachineStatusById = (id, newStatus) => ({
   type: RESET_MACHIE_STATUS_BY_ID,

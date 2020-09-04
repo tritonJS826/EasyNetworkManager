@@ -7,7 +7,7 @@ import store from '../redux/redux-store';
 
 const ping = require('ping');
 
-const myPing = (hosts = ['172.21.96.144']) => async (dispatch) => {
+const myPing = (hosts) => async (dispatch) => {
   dispatch(increaseProcessCounter());
   dispatch(pushStory('Ping...'));
   const config = {
